@@ -30,3 +30,6 @@ Thumbs.db
 
 # miscellaneous
 *.lock
+
+# data
+data.json
