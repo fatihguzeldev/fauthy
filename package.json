@@ -1,0 +1,24 @@
+{
+  "name": "fauthy",
+  "version": "1.0.0",
+  "description": "A CLI tool for managing TOTP MFA secrets",
+  "main": "dist/index.js",
+  "bin": {
+    "fauthy": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "commander": "^13.0.0"
+  }
+}
