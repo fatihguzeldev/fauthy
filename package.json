@@ -1,6 +1,6 @@
 {
   "name": "fauthy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI tool for managing TOTP MFA secrets",
   "icon": "logo.png",
   "main": "./dist/index.js",
