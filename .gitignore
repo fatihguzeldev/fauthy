@@ -1,35 +1,29 @@
-# node.js dependencies
+# Dependencies
 node_modules/
 
-# typescript build output
+# Build
 dist/
 
-# logs
-logs/
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# system files
+# System Files
 .DS_Store
 Thumbs.db
 
-# IDE and editor settings
-.vscode/
-.idea/
-*.swp
+# Test coverage
+coverage/
 
-# environmental variables (if added later)
-.env
-.env.local
-.env.*.local
-
-# macOS
-*.DS_Store
-
-# miscellaneous
-*.lock
-
-# data
-data.json
+# Data file
+*.enc
