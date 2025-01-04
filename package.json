@@ -2,13 +2,17 @@
   "name": "fauthy",
   "version": "1.0.0",
   "description": "A CLI tool for managing TOTP MFA secrets",
+  "icon": "logo.png",
   "main": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
   "bin": {
     "fauthy": "./dist/index.js"
   },
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "dist/types",
+    "logo.png"
   ],
   "scripts": {
     "build": "tsc && tsc-alias --resolve-full-paths",

@@ -1,5 +1,15 @@
 # Fauthy - Fatih's TOTP Manager
 
+<p align="center">
+  <img src="logo.png" alt="Fauthy Logo" width="200"/>
+</p>
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![npm version](https://img.shields.io/npm/v/fauthy.svg?style=flat)](https://www.npmjs.com/package/fauthy)
+[![Downloads](https://img.shields.io/npm/dm/fauthy.svg)](https://www.npmjs.com/package/fauthy)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
 A secure command-line TOTP (Time-based One-Time Password) manager with local encryption.
 
 ## Features
