@@ -2,21 +2,14 @@ import { Device } from './types';
 import * as Storage from './storage';
 import { authenticator } from 'otplib';
 import chalk from 'chalk';
+import * as DynamicDisplay from './dynamicDisplay';
 
 export const getTOTPForDevice = async (deviceName: string) => {
   try {
     if (!(await Storage.requireDataFile())) return;
-
-    const data: Device[] = await Storage.readData();
-    const device = data.find((d) => d.deviceName === deviceName);
-    if (!device) {
-      console.log('Device not found.');
-      return;
-    }
-    const token = authenticator.generate(device.secret);
-    console.log(`TOTP for ${deviceName}: ${token}`);
+    await DynamicDisplay.displaySingleDevice(deviceName);
   } catch (error) {
-    console.error('Error fetching TOTP:', error);
+    console.error(chalk.red('Error fetching TOTP:'), error);
   }
 };
 

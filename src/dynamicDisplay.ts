@@ -106,3 +106,40 @@ export const displayDevicesWithTime = async () => {
     console.error('Error displaying devices:', error);
   }
 };
+
+export const displaySingleDevice = async (deviceName: string) => {
+  try {
+    const data: Device[] = await Storage.readData();
+    const device = data.find((d) => d.deviceName === deviceName);
+
+    if (!device) {
+      console.log(chalk.red('Device not found.'));
+      return;
+    }
+
+    const updateDisplay = () => {
+      const now = Math.floor(Date.now() / 1000);
+      const remainingTime = 30 - (now % 30);
+      const token = authenticator.generate(device.secret);
+
+      // clear console but preserve scrollback buffer
+      process.stdout.write('\x1B[2J\x1B[H');
+
+      console.log(
+        chalk.blue(`Device: ${deviceName}\n`) +
+          chalk.yellow(`TOTP: ${token}\n`) +
+          chalk.magenta(`Time Remaining: ${remainingTime}s`)
+      );
+    };
+
+    updateDisplay();
+    const interval = setInterval(updateDisplay, UPDATE_INTERVAL);
+
+    process.on('SIGINT', () => {
+      clearInterval(interval);
+      process.exit();
+    });
+  } catch (error) {
+    console.error('Error displaying device:', error);
+  }
+};
