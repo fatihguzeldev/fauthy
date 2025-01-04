@@ -16,7 +16,7 @@ export default [
     rules: {
       // Your rules here
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
     },
   },
 ]; 
