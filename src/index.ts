@@ -29,17 +29,26 @@ program
 
 program
   .command('add <deviceName> <secret>')
+  .option('-t, --tag <tag>', 'Add a tag to the device')
   .description('add a new TOTP device')
   .usage('<deviceName> <secret> (e.g., fauthy add github JBSWY3DPEHPK3PXP)')
-  .action(async (deviceName: string, secret: string) => {
-    await Commands.addDevice(deviceName, secret);
+  .action(async (deviceName: string, secret: string, options) => {
+    await Commands.addDevice(deviceName, secret, options.tag);
+  });
+
+program
+  .command('tag <deviceName> <tag>')
+  .description('add or update a tag for a device')
+  .action((deviceName: string, tag: string) => {
+    Commands.tagDevice(deviceName, tag);
   });
 
 program
   .command('list')
-  .description('list all TOTP devices')
-  .action(() => {
-    DynamicDisplay.displayDevicesWithTime();
+  .option('-t, --tag <tag>', 'Filter devices by tag')
+  .description('list TOTP devices')
+  .action((options) => {
+    Commands.listDevices(options.tag);
   });
 
 program

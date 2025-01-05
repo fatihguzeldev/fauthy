@@ -69,9 +69,9 @@ const displayTable = (displayData: DisplayDevice[]) => {
   });
 };
 
-export const displayDevicesWithTime = async () => {
+export const displayDevicesWithTime = async (devices?: Device[]) => {
   try {
-    const data: Device[] = await Storage.readData();
+    const data: Device[] = devices || (await Storage.readData());
     if (data.length === 0) {
       console.log('No devices found.');
       return;

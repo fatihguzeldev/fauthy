@@ -1,16 +1,20 @@
-# Fauthy - Fatih's TOTP Manager
+# fauthy - Fatih's TOTP Manager
 
 <p align="center">
-  <img src="logo.png" alt="Fauthy Logo" width="200"/>
+  <img src="./logo.png" alt="fauthy Logo" width="200"/>
 </p>
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![npm version](https://img.shields.io/npm/v/fauthy.svg?style=flat)](https://www.npmjs.com/package/fauthy)
 [![Downloads](https://img.shields.io/npm/dm/fauthy.svg)](https://www.npmjs.com/package/fauthy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 A secure command-line TOTP (Time-based One-Time Password) manager with local encryption.
+
+## Support
+
+If you find this tool useful, consider [buying me a coffee](https://buymeacoffee.com/fatihguzel)!
 
 ## Features
 
@@ -19,10 +23,11 @@ A secure command-line TOTP (Time-based One-Time Password) manager with local enc
 - 💾 Secure local storage in user's home directory
 - 🔄 Dynamic display with countdown timer
 - 🎨 Colored output for better readability
+- 🏷️ Device tagging and filtering
 
 ## Security
 
-Fauthy stores your TOTP secrets locally with strong encryption:
+fauthy stores your TOTP secrets locally with strong encryption:
 - AES-256-GCM encryption
 - Random IV for each encryption
 - Authentication tags to verify data integrity
@@ -37,7 +42,7 @@ npm install -g fauthy
 
 ## Usage
 
-### Initialize Fauthy
+### Initialize fauthy
 ```bash
 fauthy init
 ```
@@ -75,6 +80,21 @@ fauthy remove <deviceName>
 ### Rename Device
 ```bash
 fauthy rename <oldName> <newName>
+```
+
+### Add a Device with Tag
+```bash
+fauthy add <deviceName> <secret> -t <tag>
+```
+
+### List Devices with Tag
+```bash
+fauthy list -t <tag>
+```
+
+### Tag a Device
+```bash
+fauthy tag <deviceName> <tag>
 ```
 
 ## Data Storage
@@ -128,7 +148,3 @@ npm start
 ## License
 
 MIT
-
-## Support
-
-If you find this tool useful, consider [buying me a coffee](https://buymeacoffee.com/fatihguzel)!

@@ -13,7 +13,11 @@ export const getTOTPForDevice = async (deviceName: string) => {
   }
 };
 
-export const addDevice = async (deviceName: string, secret: string) => {
+export const addDevice = async (
+  deviceName: string,
+  secret: string,
+  tag?: string
+) => {
   try {
     try {
       authenticator.generate(secret);
@@ -34,10 +38,13 @@ export const addDevice = async (deviceName: string, secret: string) => {
       deviceName,
       secret,
       createdAt: new Date().toISOString(),
+      tag,
     };
     data.push(newDevice);
     await Storage.writeData(data);
-    console.log(chalk.green(`Device added: ${deviceName}`));
+
+    const tagMessage = tag ? chalk.green(` with tag: ${tag}`) : '';
+    console.log(chalk.green(`Device added: ${deviceName}${tagMessage}`));
   } catch (error) {
     if (error instanceof Error) {
       console.error(chalk.red(`Error: ${error.message}`));
@@ -90,5 +97,54 @@ export const renameDevice = async (
     } else {
       console.error(chalk.red('An unexpected error occurred'));
     }
+  }
+};
+
+export const tagDevice = async (deviceName: string, tag: string) => {
+  try {
+    if (!(await Storage.requireDataFile())) {
+      return;
+    }
+
+    const data: Device[] = await Storage.readData();
+    const deviceIndex = data.findIndex((d) => d.deviceName === deviceName);
+
+    if (deviceIndex === -1) {
+      console.log(chalk.red('Device not found.'));
+      return;
+    }
+
+    data[deviceIndex].tag = tag;
+    await Storage.writeData(data);
+    console.log(chalk.green(`Added tag "${tag}" to device "${deviceName}"`));
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(chalk.red(`Error: ${error.message}`));
+    } else {
+      console.error(chalk.red('An unexpected error occurred'));
+    }
+  }
+};
+
+export const listDevices = async (tag?: string) => {
+  try {
+    const data: Device[] = await Storage.readData();
+
+    const filteredData = tag
+      ? data.filter((device) => device.tag === tag)
+      : data;
+
+    if (filteredData.length === 0) {
+      if (tag) {
+        console.log(chalk.yellow(`No devices found with tag: ${tag}`));
+      } else {
+        console.log(chalk.yellow('No devices found.'));
+      }
+      return;
+    }
+
+    DynamicDisplay.displayDevicesWithTime(filteredData);
+  } catch (error) {
+    console.error(chalk.red('Error listing devices:'), error);
   }
 };
