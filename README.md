@@ -14,7 +14,7 @@ A secure command-line TOTP (Time-based One-Time Password) manager with local enc
 
 ## Support
 
-If you find this tool useful, consider [buying me a coffee](https://buymeacoffee.com/fatihguzel)!
+If you find this tool useful, consider [buying me a coffee](https://buymeacoffee.com/fatihlovestosimplify)!
 
 ## Features
 
